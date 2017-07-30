@@ -19,7 +19,7 @@ pipeline {
     stage('Integration Tests') {
       steps {
         node('host'){
-            sh './mvnw package && /usr/local/bin/docker-compose -f docker-compose-integration-test.yml up spring_integration_test node_integration_test && /usr/local/bin/docker-compose -f docker-compose-integration-test.yml up -d mysql_integration_test mysql_service spring_service'
+            sh 'pwd && ./mvnw package && /usr/local/bin/docker-compose -f docker-compose-integration-test.yml up spring_integration_test node_integration_test && /usr/local/bin/docker-compose -f docker-compose-integration-test.yml up -d mysql_integration_test mysql_service spring_service'
         }
       }
       post {
