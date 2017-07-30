@@ -19,13 +19,13 @@ pipeline {
     stage('Integration Tests') {
       steps {
         node('host'){
-            sh 'pwd && ./mvnw package && /usr/local/bin/docker-compose -f docker-compose-integration-test.yml up spring_integration_test node_integration_test && /usr/local/bin/docker-compose -f docker-compose-integration-test.yml up -d mysql_integration_test mysql_service spring_service'
+            sh 'cd ./test-demo && ./mvnw package && /usr/local/bin/docker-compose -f docker-compose-integration-test.yml up spring_integration_test node_integration_test && /usr/local/bin/docker-compose -f docker-compose-integration-test.yml up -d mysql_integration_test mysql_service spring_service'
         }
       }
       post {
         always {
           node('host'){
-            sh '/usr/local/bin/docker rm spring_service -f && cd ..'
+            sh '/usr/local/bin/docker rm spring_service -f'
           }
         }
         failure {
