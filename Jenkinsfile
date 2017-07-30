@@ -1,12 +1,17 @@
 pipeline {
   agent any
   stages {
-
-    stage('Unit Tests') {
+    stage('Build'){
       steps {
         node('host'){
             checkout scm
             sh 'git submodule init && git submodule update'
+        }
+      }
+    }
+    stage('Unit Tests') {
+      steps {
+        node('host'){
             sh 'cd ./test-demo && /usr/local/bin/docker-compose -f docker-compose-test.yml up spring_test && /usr/local/bin/docker-compose -f docker-compose-test.yml up -d mysql_test'
         }
       }
