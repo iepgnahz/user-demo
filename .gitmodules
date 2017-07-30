@@ -1,0 +1,6 @@
+[submodule "test-demo"]
+	path = test-demo
+	url = git@github.com:iepgnahz/test-demo.git
+[submodule "web-api-demo"]
+	path = web-api-demo
+	url = git@github.com:iepgnahz/web-api-demo.git
