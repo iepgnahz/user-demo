@@ -1,0 +1,52 @@
+version: '2'
+services:
+#  mysql:
+#    image: mysql:5.7
+#    container_name: mysql_demo
+#    ports:
+#      - 3306:3306
+#    environment:
+#      - LANG=C.UTF-8
+#      - TERM=dumb
+#      - MYSQL_ROOT_PASSWORD=123456
+#      - MYSQL_DATABASE=test
+#      - MYSQL_PASSWORD=123456
+#      - MYSQL_USER=zhangpei
+#    volumes:
+#      - ./database/init_database.sql:/docker-entrypoint-initdb.d/init_database.sql
+#    networks:
+#      main:
+#  spring:
+#    image: java:8
+#    container_name: spring
+#    links:
+#      - mysql:mysql
+#    ports:
+#      - 8888:8080
+#    volumes:
+#      - ./target/demo-0.0.1-SNAPSHOT.jar:/usr/src/myapp/spring-boot-demo-0.0.1.jar
+#    command: java -jar /usr/src/myapp/spring-boot-demo-0.0.1.jar  --spring.profiles.active=prod
+#    networks:
+#       main:
+  jenkins:
+    build: ./jenkins/
+    container_name: jenkins_ci
+    ports:
+      - 8088:8080
+    networks:
+          main:
+  nginx:
+    image: nginx:1.13.3
+    conatainer_name: nginx
+    ports:
+      - 9998:80
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+      - ./web-demo/public/assets:/var/twars/web
+    networks:
+      main:
+        aliases:
+          - nginx
+
+networks:
+  main:

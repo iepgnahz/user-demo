@@ -10,6 +10,10 @@ Icon
 
 # Thumbnails
 ._*
+web-demo/package-lock.json
+web-demo/node_modules
+web-demo/public/assets
+
 !test-demo
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
